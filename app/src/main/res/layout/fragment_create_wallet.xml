@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CreateWalletFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtCreateWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/createEditWallet"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutNamaWallet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/inputWalletName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCreateWallet">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtNamaWallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutJenisWallet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:enabled="false"
+            android:hint="Jenis Wallet"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNamaWallet"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutNamaWallet"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNamaWallet">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtJenisWallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutSaldo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Masukkan Saldo"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutJenisWallet"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutJenisWallet"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutJenisWallet">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtSaldo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnCreateEditWallet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/btnCreateEditWallet"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutSaldo"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutSaldo"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSaldo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

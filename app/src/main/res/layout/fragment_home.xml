@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnBankHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/btnBankHome"
+            app:cornerRadius="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnSpayHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnSpayHome"
+            app:cornerRadius="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/btnBankHome"
+            app:layout_constraintStart_toStartOf="@+id/btnBankHome"
+            app:layout_constraintTop_toBottomOf="@+id/btnBankHome" />
+
+        <Button
+            android:id="@+id/btnGopayHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnGopayHome"
+            app:cornerRadius="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/btnSpayHome"
+            app:layout_constraintStart_toStartOf="@+id/btnSpayHome"
+            app:layout_constraintTop_toBottomOf="@+id/btnSpayHome" />
+
+        <Button
+            android:id="@+id/btnDanaHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnDanaHome"
+            app:cornerRadius="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/btnGopayHome"
+            app:layout_constraintStart_toStartOf="@+id/btnGopayHome"
+            app:layout_constraintTop_toBottomOf="@+id/btnGopayHome" />
+
+        <Button
+            android:id="@+id/btnOvoHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnOvoHome"
+            app:cornerRadius="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/btnDanaHome"
+            app:layout_constraintStart_toStartOf="@+id/btnDanaHome"
+            app:layout_constraintTop_toBottomOf="@+id/btnDanaHome" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

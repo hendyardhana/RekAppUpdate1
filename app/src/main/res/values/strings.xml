@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RekApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtLoadErrorWallet">No Data</string>
+    <string name="btnBankHome">Bank</string>
+    <string name="btnSpayHome">Shopee Pay</string>
+    <string name="btnGopayHome">Gopay</string>
+    <string name="btnDanaHome">Dana</string>
+    <string name="btnOvoHome">Ovo</string>
+    <string name="createEditWallet">CREATE WALLET</string>
+    <string name="inputWalletName">Masukkan Nama Wallet</string>
+    <string name="btnCreateEditWallet">Create Wallet</string>
+</resources>

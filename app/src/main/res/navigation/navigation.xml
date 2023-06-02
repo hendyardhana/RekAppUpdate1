@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.rekapp.view.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_walletListFragment"
+            app:destination="@id/walletListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/walletListFragment"
+        android:name="com.example.rekapp.view.WalletListFragment"
+        android:label="fragment_wallet_list"
+        tools:layout="@layout/fragment_wallet_list" >
+        <argument
+            android:name="wallet"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_walletListFragment_to_createWalletFragment"
+            app:destination="@id/createWalletFragment" />
+        <action
+            android:id="@+id/action_walletListFragment_to_transactionListFragment"
+            app:destination="@id/transactionListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createWalletFragment"
+        android:name="com.example.rekapp.view.CreateWalletFragment"
+        android:label="fragment_create_wallet"
+        tools:layout="@layout/fragment_create_wallet" >
+        <argument
+            android:name="jeniswallet"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTransactionFragment"
+        android:name="com.example.rekapp.view.CreateTransactionFragment"
+        android:label="fragment_create_transaction"
+        tools:layout="@layout/fragment_create_transaction" >
+        <argument
+            android:name="idwallet"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionListFragment"
+        android:name="com.example.rekapp.view.TransactionListFragment"
+        android:label="fragment_transaction_list"
+        tools:layout="@layout/fragment_transaction_list" >
+        <action
+            android:id="@+id/action_transactionListFragment_to_createTransactionFragment"
+            app:destination="@id/createTransactionFragment" />
+        <argument
+            android:name="idwallet"
+            app:argType="integer" />
+    </fragment>
+</navigation>
