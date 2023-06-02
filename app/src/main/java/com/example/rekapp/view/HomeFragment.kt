@@ -26,6 +26,8 @@ class HomeFragment : Fragment() {
         val btnGopay = view.findViewById<Button>(R.id.btnGopayHome)
         val btnDana = view.findViewById<Button>(R.id.btnDanaHome)
         val btnOvo = view.findViewById<Button>(R.id.btnOvoHome)
+        val btnJajan = view.findViewById<Button>(R.id.btnJajanHome)
+        val btnDompet = view.findViewById<Button>(R.id.btnDompetHome)
 
         btnBank.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("bank")
@@ -49,6 +51,16 @@ class HomeFragment : Fragment() {
 
         btnOvo.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("ovo")
+            Navigation.findNavController(view).navigate(action)
+        }
+
+        btnJajan.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("jajan")
+            Navigation.findNavController(view).navigate(action)
+        }
+
+        btnDompet.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("dompet")
             Navigation.findNavController(view).navigate(action)
         }
     }

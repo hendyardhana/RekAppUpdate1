@@ -43,6 +43,7 @@ class CreateWalletFragment : Fragment() {
             "gopay" -> jeniswallettext = "GOPAY"
             "dana" -> jeniswallettext = "DANA"
             "ovo" -> jeniswallettext = "OVO"
+            "jajan" -> jeniswallettext = "JAJAN"
         }
 
         txtJenisWallet.setText(jeniswallettext)
@@ -53,7 +54,7 @@ class CreateWalletFragment : Fragment() {
             if(!txtNamaWallet.text.toString().isEmpty() && !txtSaldo.text.toString().isEmpty()){
                 val wallet = Wallet(txtNamaWallet.text.toString(), jeniswallet, txtSaldo.text.toString().toInt())
                 viewmodel.addWallet(wallet)
-                Toast.makeText(view.context, "Add Wallet Success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "Berhasil Tambah Wallet", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(it).popBackStack()
             }
             else{

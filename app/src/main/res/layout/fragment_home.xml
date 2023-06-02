@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:text="@string/btnBankHome"
             app:cornerRadius="20sp"
@@ -71,5 +71,28 @@
             app:layout_constraintEnd_toEndOf="@+id/btnDanaHome"
             app:layout_constraintStart_toStartOf="@+id/btnDanaHome"
             app:layout_constraintTop_toBottomOf="@+id/btnDanaHome" />
+
+        <Button
+            android:id="@+id/btnJajanHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnJajanHome"
+            app:layout_constraintEnd_toEndOf="@+id/btnOvoHome"
+            app:layout_constraintStart_toStartOf="@+id/btnOvoHome"
+            app:layout_constraintTop_toBottomOf="@+id/btnDompetHome" />
+
+        <Button
+            android:id="@+id/btnDompetHome"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnDompetHome"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/btnOvoHome"
+            app:layout_constraintStart_toStartOf="@+id/btnOvoHome"
+            app:layout_constraintTop_toBottomOf="@+id/btnOvoHome" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

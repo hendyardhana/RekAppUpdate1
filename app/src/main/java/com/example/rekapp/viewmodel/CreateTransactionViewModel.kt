@@ -23,4 +23,11 @@ class CreateTransactionViewModel(application: Application): AndroidViewModel(app
             db.RekAppDao().insertTransaction(transaction)
         }
     }
+
+    fun updateWallet(saldo:Int, idwallet:Int){
+        launch {
+            val db = buildDb(getApplication())
+            db.RekAppDao().updateWallet(saldo, idwallet)
+        }
+    }
 }

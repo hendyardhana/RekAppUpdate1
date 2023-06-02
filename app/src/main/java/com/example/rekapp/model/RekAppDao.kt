@@ -27,4 +27,7 @@ interface RekAppDao {
 
     @Query("DELETE FROM 'transaction' WHERE wallet1= :wallet or wallet2= :wallet")
     fun deleteTransaction(wallet:Int)
+
+    @Query("UPDATE 'wallet' SET sisasaldo= sisasaldo+:saldo WHERE idwallet= :idwallet")
+    fun updateWallet(saldo:Int, idwallet:Int)
 }

@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
+        android:tint="#F60000"
         app:layout_constraintBottom_toBottomOf="@+id/btnWalletList"
         app:layout_constraintEnd_toEndOf="@+id/btnWalletList"
         app:layout_constraintTop_toTopOf="@+id/btnWalletList"

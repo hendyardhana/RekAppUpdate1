@@ -10,24 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutTujuan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Masukkan Tujuan"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtTujuan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -44,9 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Masukkan Nominal"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutTujuan"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayoutTujuan"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutTujuan">
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDari"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutDari"
+            app:layout_constraintTop_toBottomOf="@+id/txtTujuan">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtNominal"
@@ -60,6 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:hint="Masukkan Deskripsi/Keterangan"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNominal"
             app:layout_constraintStart_toStartOf="@+id/textInputLayoutNominal"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNominal">
@@ -67,8 +50,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtDeskripsi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -76,10 +58,48 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Button"
+            android:text="@string/btnCreateTransaction"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDeskripsi"
             app:layout_constraintStart_toStartOf="@+id/textInputLayoutDeskripsi"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDeskripsi" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutDari"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Dari"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtDari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/txtTujuan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDari"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutDari"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Kirim Ke:"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutDari"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDari" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

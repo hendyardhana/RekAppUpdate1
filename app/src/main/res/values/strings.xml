@@ -11,4 +11,18 @@
     <string name="createEditWallet">CREATE WALLET</string>
     <string name="inputWalletName">Masukkan Nama Wallet</string>
     <string name="btnCreateEditWallet">Create Wallet</string>
+    <string name="txtIncome">INCOME</string>
+    <string name="txtOutcome">Pengeluaran</string>
+    <string name="btnCreateTransaction">Create Transcation</string>
+    <string name="btnJajanHome">Jajan</string>
+    <string name="btnDompetHome">Dompet</string>
+
+    <string-array name="listwallet">
+        <item>-- Pilih Tujuan --</item>
+        <item>BANK</item>
+        <item>SHOPEE PAY</item>
+        <item>GOPAY</item>
+        <item>DANA</item>
+        <item>OVO</item>
+    </string-array>
 </resources>

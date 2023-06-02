@@ -38,6 +38,8 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
         val txtTanggal = holder.view.findViewById<TextView>(R.id.txtTanggalTransaksi)
         val txtDariatauKe = holder.view.findViewById<TextView>(R.id.txtTransaksiDariKe)
         val txtNominal = holder.view.findViewById<TextView>(R.id.txtNominal)
+        val txtDeskripsi = holder.view.findViewById<TextView>(R.id.txtDeskripsiTransaksi)
+        txtDeskripsi.text = transactionList[position].deskripsi
         txtTanggal.text = transactionList[position].tanggaltransaksi
 
         var jeniswallets = ""
@@ -60,6 +62,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
                     "gopay" -> jeniswallets = "GOPAY"
                     "dana" -> jeniswallets = "DANA"
                     "ovo" -> jeniswallets = "OVO"
+                    "jajan" -> jeniswallets = "JAJAN"
                 }
                 txtDariatauKe.text = "Transaksi Ke " + globalwallet.namawallet + " - " + jeniswallets
                 txtNominal.text = "- "+transactionList[position].nominal.toString()
@@ -83,6 +86,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
                     "gopay" -> jeniswallets = "GOPAY"
                     "dana" -> jeniswallets = "DANA"
                     "ovo" -> jeniswallets = "OVO"
+                    "jajan" -> jeniswallets = "JAJAN"
                 }
                 txtDariatauKe.text = "Transaksi Dari " + globalwallet.namawallet + " - " + jeniswallets
                 txtNominal.text = "+ " + transactionList[position].nominal.toString()
