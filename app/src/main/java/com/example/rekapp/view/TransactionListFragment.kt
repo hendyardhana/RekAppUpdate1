@@ -19,6 +19,9 @@ import com.example.rekapp.adapter.TransactionListAdapter
 import com.example.rekapp.model.Transaction
 import com.example.rekapp.viewmodel.TransactionViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 
 class TransactionListFragment : Fragment() {
 
@@ -60,24 +63,22 @@ class TransactionListFragment : Fragment() {
         val cardincome = view.findViewById<CardView>(R.id.cardView)
         val cardoutcome = view.findViewById<CardView>(R.id.cardView2)
         val txtsaldogakanggo = view.findViewById<TextView>(R.id.txtSaldoGakanggo)
+        if(wallet == 0 || wallet == 1){
+            cardincome.visibility = View.GONE
+            cardoutcome.visibility = View.GONE
+            txtsaldos.visibility = View.GONE
+            txtsaldogakanggo.visibility = View.GONE
+            if(wallet == 0){
+                txtheader.text = "PEMASUKAN BULAN INI"
+            }
+            else if(wallet == 1){
+                txtheader.text = "PENGELUARAN BULAN INI"
+            }
+        }
         for (i in 0 until Global.wallet.size){
             if(Global.wallet[i].idwallet == wallet){
                 txtheader.text = "Transaksi " + Global.wallet[i].namawallet.toUpperCase() + " - " + Global.wallet[i].jeniswallet.toUpperCase()
                 txtsaldos.text = "Rp. ${Global.wallet[i].sisasaldo}"
-                if(Global.wallet[i].jeniswallet == "jajan"){
-                    cardincome.visibility = View.GONE
-                    cardoutcome.visibility = View.GONE
-                    txtsaldos.visibility = View.GONE
-                    fab.visibility = View.GONE
-                    txtsaldogakanggo.visibility = View.GONE
-                }
-                else{
-                    cardincome.visibility = View.VISIBLE
-                    cardoutcome.visibility = View.VISIBLE
-                    txtsaldos.visibility = View.VISIBLE
-                    fab.visibility = View.VISIBLE
-                    txtsaldogakanggo.visibility = View.VISIBLE
-                }
             }
         }
         observeViewModel(wallet)

@@ -25,6 +25,8 @@ data class Transaction(
     var wallet2:Int,
     @ColumnInfo(name="nominal")
     var nominal:Int,
+    @ColumnInfo(name="jenisTransaksi")
+    var jenisTransaksi:String,
     @ColumnInfo(name="deskripsi")
     var deskripsi:String?,
     @ColumnInfo(name="tanggaltransaksi")

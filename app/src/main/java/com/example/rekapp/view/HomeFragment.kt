@@ -6,11 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.example.rekapp.Global
 import com.example.rekapp.R
+import com.example.rekapp.model.Wallet
+import com.example.rekapp.viewmodel.WalletViewModel
 
 class HomeFragment : Fragment() {
 
+    private lateinit var viewmodel:WalletViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,47 +28,36 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btnBank = view.findViewById<Button>(R.id.btnBankHome)
-        val btnSpay = view.findViewById<Button>(R.id.btnSpayHome)
-        val btnGopay = view.findViewById<Button>(R.id.btnGopayHome)
-        val btnDana = view.findViewById<Button>(R.id.btnDanaHome)
-        val btnOvo = view.findViewById<Button>(R.id.btnOvoHome)
-        val btnJajan = view.findViewById<Button>(R.id.btnJajanHome)
-        val btnDompet = view.findViewById<Button>(R.id.btnDompetHome)
+        viewmodel = ViewModelProvider(this).get(WalletViewModel::class.java)
+        viewmodel.refresh("")
 
-        btnBank.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("bank")
-            Navigation.findNavController(view).navigate(action)
-        }
+        viewmodel.allWallet.observe(viewLifecycleOwner, Observer {
+            Global.wallet = it as ArrayList<Wallet>
+        })
 
-        btnSpay.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("spay")
-            Navigation.findNavController(view).navigate(action)
-        }
+        val btnDompetVirtual = view.findViewById<Button>(R.id.btnBankHome)
+        val btnDompet = view.findViewById<Button>(R.id.btnSpayHome)
+        val btnPemasukan = view.findViewById<Button>(R.id.btnGopayHome)
+        val btnPengeluaran = view.findViewById<Button>(R.id.btnDanaHome)
 
-        btnGopay.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("gopay")
-            Navigation.findNavController(view).navigate(action)
-        }
-
-        btnDana.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("dana")
-            Navigation.findNavController(view).navigate(action)
-        }
-
-        btnOvo.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("ovo")
-            Navigation.findNavController(view).navigate(action)
-        }
-
-        btnJajan.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("jajan")
+        btnDompetVirtual.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("Dompet Virtual")
             Navigation.findNavController(view).navigate(action)
         }
 
         btnDompet.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("dompet")
+            val action = HomeFragmentDirections.actionHomeFragmentToWalletListFragment("Dompet")
             Navigation.findNavController(view).navigate(action)
+        }
+
+        btnPemasukan.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToTransactionListFragment(0)
+            Navigation.findNavController(it).navigate(action)
+        }
+
+        btnPengeluaran.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToTransactionListFragment(1)
+            Navigation.findNavController(it).navigate(action)
         }
     }
 }

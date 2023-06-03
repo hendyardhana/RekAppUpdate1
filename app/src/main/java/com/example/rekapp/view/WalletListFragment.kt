@@ -25,7 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class WalletListFragment : Fragment() {
 
     private lateinit var viewModel: WalletViewModel
-    private val walletListAdapter = WalletListAdapter(arrayListOf(), {item -> showDialog(item, item.idwallet)})
+    private val walletListAdapter = WalletListAdapter(arrayListOf(), {item -> showDialog(item, item.jeniswallet, item.namawallet)})
     private var wallet = ""
 
     override fun onCreateView(
@@ -50,16 +50,7 @@ class WalletListFragment : Fragment() {
         viewModel.refresh(wallet)
 
         val txtJenisWalletHeader = view.findViewById<TextView>(R.id.txtJenisWalletHeader)
-        var jeniswallets = ""
-
-        when(wallet){
-            "bank" -> jeniswallets = "BANK"
-            "spay" -> jeniswallets = "SHOPEE PAY"
-            "gopay" -> jeniswallets = "GOPAY"
-            "dana" -> jeniswallets = "DANA"
-            "ovo" -> jeniswallets = "OVO"
-        }
-        txtJenisWalletHeader.text = jeniswallets
+        txtJenisWalletHeader.text = wallet.toUpperCase()
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fabAddWallet)
         fab.setOnClickListener {
@@ -88,22 +79,22 @@ class WalletListFragment : Fragment() {
         })
     }
 
-    private fun showDialog(item:Wallet, wallet:Int) {
+    private fun showDialog(item:Wallet, jenisDompet:String, namaDompet:String) {
         val alertDialogBuilder: AlertDialog.Builder = AlertDialog.Builder(
             context
         )
 
         // set title dialog
-        alertDialogBuilder.setTitle("Yakin mau dihapus nih?")
+        alertDialogBuilder.setTitle("Hapus $jenisDompet").setIcon(R.drawable.baseline_warning_24)
 
         // set pesan dari dialog
         alertDialogBuilder
-            .setMessage("Datamu bakal ilang semua lohh")
+            .setMessage("Yakin menghapus ${namaDompet.toUpperCase()} ?")
             .setCancelable(false)
             .setPositiveButton(
                 "Ya"
             ) { dialog, id ->
-                viewModel.deleteTransaction(wallet)
+                viewModel.deleteTransaction(item.idwallet)
                 viewModel.deleteWallet(item)
             }
             .setNegativeButton(

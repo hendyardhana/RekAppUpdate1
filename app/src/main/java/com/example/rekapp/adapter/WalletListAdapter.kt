@@ -28,7 +28,7 @@ class WalletListAdapter(private val walletList:ArrayList<Wallet>, val adapterOnC
     override fun onBindViewHolder(holder: WalletListViewHolder, position: Int) {
         val btnWallet = holder.view.findViewById<Button>(R.id.btnWalletList)
         val imgDelete = holder.view.findViewById<ImageView>(R.id.imgDeleteWallet)
-        btnWallet.text = walletList[position].namawallet + " - " + walletList[position].jeniswallet.toUpperCase()
+        btnWallet.text = "${walletList[position].namawallet} (Rp. ${walletList[position].sisasaldo})"
 
         btnWallet.setOnClickListener {
             val action = WalletListFragmentDirections.actionWalletListFragmentToTransactionListFragment(walletList[position].idwallet)

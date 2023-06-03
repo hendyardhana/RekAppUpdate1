@@ -42,55 +42,62 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
         txtDeskripsi.text = transactionList[position].deskripsi
         txtTanggal.text = transactionList[position].tanggaltransaksi
 
-        var jeniswallets = ""
-        if(transactionList[position].wallet1 == wallet1){
-            val wallet = transactionList[position].wallet2
-            val globalwallets = Global.wallet
-            var globalwallet = Wallet("", "", 0)
-
-            for (i in 0 until globalwallets.size){
-                if(globalwallets[i].idwallet == wallet){
-                    globalwallet = globalwallets[i]
-                    //Log.d("datawallet1", globalwallet.toString())
+        if(transactionList[position].wallet1 == 0){
+            var wal = ""
+            for (i in 0 until Global.wallet.size){
+                if(Global.wallet[i].idwallet == transactionList[position].wallet2){
+                    wal = Global.wallet[i].namawallet
                 }
             }
-
-            if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
-                when(globalwallet.jeniswallet){
-                    "bank" -> jeniswallets = "BANK"
-                    "spay" -> jeniswallets = "SHOPEE PAY"
-                    "gopay" -> jeniswallets = "GOPAY"
-                    "dana" -> jeniswallets = "DANA"
-                    "ovo" -> jeniswallets = "OVO"
-                    "jajan" -> jeniswallets = "JAJAN"
+            txtDariatauKe.text = "Pemasukan Ke $wal"
+            txtNominal.text = "+ ${transactionList[position].nominal}"
+            txtNominal.setTextColor(Color.BLUE)
+        }
+        else if(transactionList[position].wallet1 == 1){
+            var wal = ""
+            for (i in 0 until Global.wallet.size){
+                if(Global.wallet[i].idwallet == transactionList[position].wallet2){
+                    wal = Global.wallet[i].namawallet
                 }
-                txtDariatauKe.text = "Transaksi Ke " + globalwallet.namawallet + " - " + jeniswallets
-                txtNominal.text = "- "+transactionList[position].nominal.toString()
-                txtNominal.setTextColor(Color.RED)
             }
+            txtDariatauKe.text = "Pengeluaran Dari $wal"
+            txtNominal.text = "- ${transactionList[position].nominal}"
+            txtNominal.setTextColor(Color.RED)
         }
         else{
-            val wallet = transactionList[position].wallet1
-            val globalwallets = Global.wallet
-            var globalwallet = Wallet("", "", 0)
-            for (i in 0 until globalwallets.size){
-                if(globalwallets[i].idwallet == wallet){
-                    globalwallet = globalwallets[i]
-                    //Log.d("datawallet2", globalwallet.toString())
+            if(transactionList[position].wallet1 == wallet1){
+                val wallet = transactionList[position].wallet2
+                val globalwallets = Global.wallet
+                var globalwallet = Wallet("", "", 0)
+
+                for (i in 0 until globalwallets.size){
+                    if(globalwallets[i].idwallet == wallet){
+                        globalwallet = globalwallets[i]
+                        //Log.d("datawallet1", globalwallet.toString())
+                    }
+                }
+
+                if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
+                    txtDariatauKe.text = "Transaksi Ke " + globalwallet.namawallet + " - " + globalwallet.jeniswallet.toUpperCase()
+                    txtNominal.text = "- "+transactionList[position].nominal.toString()
+                    txtNominal.setTextColor(Color.RED)
                 }
             }
-            if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
-                when(globalwallet.jeniswallet){
-                    "bank" -> jeniswallets = "BANK"
-                    "spay" -> jeniswallets = "SHOPEE PAY"
-                    "gopay" -> jeniswallets = "GOPAY"
-                    "dana" -> jeniswallets = "DANA"
-                    "ovo" -> jeniswallets = "OVO"
-                    "jajan" -> jeniswallets = "JAJAN"
+            else{
+                val wallet = transactionList[position].wallet1
+                val globalwallets = Global.wallet
+                var globalwallet = Wallet("", "", 0)
+                for (i in 0 until globalwallets.size){
+                    if(globalwallets[i].idwallet == wallet){
+                        globalwallet = globalwallets[i]
+                        //Log.d("datawallet2", globalwallet.toString())
+                    }
                 }
-                txtDariatauKe.text = "Transaksi Dari " + globalwallet.namawallet + " - " + jeniswallets
-                txtNominal.text = "+ " + transactionList[position].nominal.toString()
-                txtNominal.setTextColor(Color.GREEN)
+                if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
+                    txtDariatauKe.text = "Transaksi Dari " + globalwallet.namawallet + " - " + globalwallet.jeniswallet.toUpperCase()
+                    txtNominal.text = "+ " + transactionList[position].nominal.toString()
+                    txtNominal.setTextColor(Color.BLUE)
+                }
             }
         }
     }

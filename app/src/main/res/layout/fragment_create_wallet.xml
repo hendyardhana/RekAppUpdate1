@@ -29,7 +29,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/inputWalletName"
+            android:hint="Nama Dompet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtCreateWallet">
@@ -41,31 +41,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutJenisWallet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:enabled="false"
-            android:hint="Jenis Wallet"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNamaWallet"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayoutNamaWallet"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNamaWallet">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtJenisWallet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutSaldo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Masukkan Saldo"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutJenisWallet"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayoutJenisWallet"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutJenisWallet">
+            android:hint="Saldo Awal"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutNamaWallet"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutNamaWallet"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNamaWallet">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtSaldo"
@@ -79,7 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/btnCreateEditWallet"
+            android:text="Buat Dompet"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayoutSaldo"
             app:layout_constraintStart_toStartOf="@+id/textInputLayoutSaldo"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSaldo" />

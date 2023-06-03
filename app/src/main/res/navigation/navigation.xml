@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_walletListFragment"
             app:destination="@id/walletListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transactionListFragment"
+            app:destination="@id/transactionListFragment" />
     </fragment>
     <fragment
         android:id="@+id/walletListFragment"

@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.rekapp.Global
@@ -20,6 +22,8 @@ import com.example.rekapp.model.Transaction
 import com.example.rekapp.model.Wallet
 import com.example.rekapp.viewmodel.CreateDetailWalletViewModel
 import com.example.rekapp.viewmodel.CreateTransactionViewModel
+import com.google.android.material.textfield.TextInputLayout
+import java.time.LocalDate
 import java.util.Calendar
 
 class CreateTransactionFragment : Fragment() {
@@ -45,9 +49,33 @@ class CreateTransactionFragment : Fragment() {
         val txtNominal = view.findViewById<EditText>(R.id.txtNominal)
         val txtDeskripsi = view.findViewById<EditText>(R.id.txtDeskripsi)
         val txtDari = view.findViewById<EditText>(R.id.txtDari)
-        for (i in 0 until Global.wallet.size){
-            if(Global.wallet[i].idwallet == wallet1){
-                txtDari.setText("${Global.wallet[i].namawallet} - ${Global.wallet[i].jeniswallet.toUpperCase()}")
+        val layoutTxtDari = view.findViewById<TextInputLayout>(R.id.textInputLayoutDari)
+        val txtKirimKe = view.findViewById<TextView>(R.id.textView2)
+        val txtJenisTransaksi = view.findViewById<TextView>(R.id.textView)
+
+        when (wallet1) {
+            0 -> {
+                txtJenisTransaksi.text = "BUAT PEMASUKAN"
+                txtDari.isEnabled = true
+                layoutTxtDari.hint = "Pemasukan"
+                txtKirimKe.text = "Masuk Ke: "
+                txtDeskripsi.visibility = View.GONE
+            }
+            1 -> {
+                txtJenisTransaksi.text = "BUAT PENGELUARAN"
+                txtDari.isEnabled = true
+                layoutTxtDari.hint = "Pengeluaran"
+                txtKirimKe.text = "Gunakan Saldo: "
+                txtDeskripsi.visibility = View.GONE
+            }
+            else -> {
+                txtJenisTransaksi.text = "TRANSFER"
+                layoutTxtDari.isEnabled = false
+                for (i in 0 until Global.wallet.size){
+                    if(Global.wallet[i].idwallet == wallet1){
+                        txtDari.setText("${Global.wallet[i].namawallet} (Rp. ${Global.wallet[i].sisasaldo})")
+                    }
+                }
             }
         }
 
@@ -55,7 +83,7 @@ class CreateTransactionFragment : Fragment() {
 
         for (i in 0 until Global.wallet.size){
             if(Global.wallet[i].idwallet != wallet1){
-                arrwallet += "${Global.wallet[i].idwallet} - ${Global.wallet[i].namawallet} - ${Global.wallet[i].jeniswallet.toUpperCase()}"
+                arrwallet += "${Global.wallet[i].idwallet} - ${Global.wallet[i].namawallet} (Rp. ${Global.wallet[i].sisasaldo})"
             }
         }
 
@@ -68,13 +96,42 @@ class CreateTransactionFragment : Fragment() {
         btnCreate.setOnClickListener {
             val str = spinner.selectedItem.toString()
             val tujuan = str.split(" - ")
-            if(spinner.selectedItem.toString() != "" && txtNominal.text.toString() != "" && txtDeskripsi.text.toString() != ""){
-                val transaction = Transaction(wallet1, tujuan[0].toInt(), txtNominal.text.toString().toInt(), txtDeskripsi.text.toString(), Calendar.getInstance().time.toString())
-                viewmodel.addTransaction(transaction)
-                viewmodel.updateWallet(txtNominal.text.toString().toInt()*-1, wallet1)
-                viewmodel.updateWallet(txtNominal.text.toString().toInt(), tujuan[0].toInt())
-                Toast.makeText(view.context, "Berhasil Tambah Transaksi", Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(it).popBackStack()
+            val sal = str.split( " (Rp. ")
+            val saldoss = sal[1].split(")")
+            if(txtDari.text.toString() != "" && txtNominal.text.toString() != ""){
+                val check = saldoss[0].toInt()-txtNominal.text.toString().toInt()
+                if(wallet1 == 0){
+                    val transaction = Transaction(wallet1, tujuan[0].toInt(), txtNominal.text.toString().toInt(), "", txtDari.text.toString(), LocalDate.now().toString())
+                    viewmodel.addTransaction(transaction)
+                    viewmodel.updateWallet(txtNominal.text.toString().toInt(), tujuan[0].toInt())
+                    Toast.makeText(view.context, "Berhasil Tambah Transaksi", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(it).popBackStack()
+                }
+                else if(wallet1 == 1){
+                    if(check >= 0){
+                        val transaction = Transaction(wallet1, tujuan[0].toInt(), txtNominal.text.toString().toInt(), "", txtDari.text.toString(), LocalDate.now().toString())
+                        viewmodel.addTransaction(transaction)
+                        viewmodel.updateWallet(txtNominal.text.toString().toInt()*-1, tujuan[0].toInt())
+                        Toast.makeText(view.context, "Berhasil Tambah Transaksi", Toast.LENGTH_SHORT).show()
+                        Navigation.findNavController(it).popBackStack()
+                    }
+                    else{
+                        Toast.makeText(context, "Saldo tidak cukup", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else{
+                    if(check >= 0){
+                        val transaction = Transaction(wallet1, tujuan[0].toInt(), txtNominal.text.toString().toInt(), "", txtDeskripsi.text.toString(), LocalDate.now().toString())
+                        viewmodel.addTransaction(transaction)
+                        viewmodel.updateWallet(txtNominal.text.toString().toInt()*-1, wallet1)
+                        viewmodel.updateWallet(txtNominal.text.toString().toInt(), tujuan[0].toInt())
+                        Toast.makeText(view.context, "Berhasil Tambah Transaksi", Toast.LENGTH_SHORT).show()
+                        Navigation.findNavController(it).popBackStack()
+                    }
+                    else{
+                        Toast.makeText(context, "Saldo tidak cukup", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             else{
                 Toast.makeText(context, "Diisi dulu semuanya", Toast.LENGTH_SHORT).show()
