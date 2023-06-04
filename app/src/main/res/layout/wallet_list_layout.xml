@@ -12,12 +12,12 @@
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:text="Button"
         app:cornerRadius="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgDeleteWallet"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,10 +25,9 @@
         android:id="@+id/imgDeleteWallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:tint="#F60000"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnWalletList"
-        app:layout_constraintEnd_toEndOf="@+id/btnWalletList"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnWalletList"
         app:srcCompat="@drawable/baseline_delete_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

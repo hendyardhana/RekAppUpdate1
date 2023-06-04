@@ -99,7 +99,7 @@ class CreateTransactionFragment : Fragment() {
             val sal = str.split( " (Rp. ")
             val saldoss = sal[1].split(")")
             if(txtDari.text.toString() != "" && txtNominal.text.toString() != ""){
-                val check = saldoss[0].toInt()-txtNominal.text.toString().toInt()
+                var check = saldoss[0].toInt()-txtNominal.text.toString().toInt()
                 if(wallet1 == 0){
                     val transaction = Transaction(wallet1, tujuan[0].toInt(), txtNominal.text.toString().toInt(), "", txtDari.text.toString(), LocalDate.now().toString())
                     viewmodel.addTransaction(transaction)
@@ -120,6 +120,11 @@ class CreateTransactionFragment : Fragment() {
                     }
                 }
                 else{
+                    for (i in 0 until Global.wallet.size){
+                        if(Global.wallet[i].idwallet == wallet1){
+                            check = Global.wallet[i].sisasaldo - txtNominal.text.toString().toInt()
+                        }
+                    }
                     if(check >= 0){
                         val transaction = Transaction(wallet1, tujuan[0].toInt(), txtNominal.text.toString().toInt(), "", txtDeskripsi.text.toString(), LocalDate.now().toString())
                         viewmodel.addTransaction(transaction)

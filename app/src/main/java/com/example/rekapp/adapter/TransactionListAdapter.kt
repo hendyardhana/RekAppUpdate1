@@ -12,12 +12,16 @@ import com.example.rekapp.R
 import com.example.rekapp.model.Transaction
 import com.example.rekapp.model.Wallet
 import com.example.rekapp.util.buildDb
+import com.example.rekapp.util.formatUang
 import com.example.rekapp.view.TransactionListFragmentDirections
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
 
 class TransactionListAdapter(private val transactionList:ArrayList<Transaction>, var wallet1:Int):RecyclerView.Adapter<TransactionListAdapter.TransactionListViewHolder>() {
@@ -50,7 +54,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
                 }
             }
             txtDariatauKe.text = "Pemasukan Ke $wal"
-            txtNominal.text = "+ ${transactionList[position].nominal}"
+            txtNominal.text = "+ ${formatUang(transactionList[position].nominal.toDouble())}"
             txtNominal.setTextColor(Color.BLUE)
         }
         else if(transactionList[position].wallet1 == 1){
@@ -61,7 +65,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
                 }
             }
             txtDariatauKe.text = "Pengeluaran Dari $wal"
-            txtNominal.text = "- ${transactionList[position].nominal}"
+            txtNominal.text = "- ${formatUang(transactionList[position].nominal.toDouble())}"
             txtNominal.setTextColor(Color.RED)
         }
         else{
@@ -79,7 +83,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
 
                 if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
                     txtDariatauKe.text = "Transaksi Ke " + globalwallet.namawallet + " - " + globalwallet.jeniswallet.toUpperCase()
-                    txtNominal.text = "- "+transactionList[position].nominal.toString()
+                    txtNominal.text = "- ${formatUang(transactionList[position].nominal.toDouble())}"
                     txtNominal.setTextColor(Color.RED)
                 }
             }
@@ -95,7 +99,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
                 }
                 if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
                     txtDariatauKe.text = "Transaksi Dari " + globalwallet.namawallet + " - " + globalwallet.jeniswallet.toUpperCase()
-                    txtNominal.text = "+ " + transactionList[position].nominal.toString()
+                    txtNominal.text = "+ ${formatUang(transactionList[position].nominal.toDouble())}"
                     txtNominal.setTextColor(Color.BLUE)
                 }
             }

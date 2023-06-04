@@ -19,12 +19,12 @@ class TransactionViewModel(application: Application): AndroidViewModel(applicati
 
     private val job = Job()
 
-    fun refresh(wallet:Int){
+    fun refresh(wallet:Int, bulanTransaksi:String){
         launch {
             val db = buildDb(getApplication())
-            db.RekAppDao().selectAllTransaction(wallet)
+            db.RekAppDao().selectAllTransaction(wallet, bulanTransaksi)
 
-            transactionLD.postValue(db.RekAppDao().selectAllTransaction(wallet))
+            transactionLD.postValue(db.RekAppDao().selectAllTransaction(wallet, bulanTransaksi))
         }
     }
 }

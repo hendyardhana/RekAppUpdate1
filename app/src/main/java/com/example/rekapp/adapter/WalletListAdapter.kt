@@ -9,7 +9,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rekapp.R
 import com.example.rekapp.model.Wallet
+import com.example.rekapp.util.formatUang
 import com.example.rekapp.view.WalletListFragmentDirections
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WalletListAdapter(private val walletList:ArrayList<Wallet>, val adapterOnClick:(Wallet) -> Unit) : RecyclerView.Adapter<WalletListAdapter.WalletListViewHolder>() {
     class WalletListViewHolder(var view:View):RecyclerView.ViewHolder(view)
@@ -28,7 +32,7 @@ class WalletListAdapter(private val walletList:ArrayList<Wallet>, val adapterOnC
     override fun onBindViewHolder(holder: WalletListViewHolder, position: Int) {
         val btnWallet = holder.view.findViewById<Button>(R.id.btnWalletList)
         val imgDelete = holder.view.findViewById<ImageView>(R.id.imgDeleteWallet)
-        btnWallet.text = "${walletList[position].namawallet} (Rp. ${walletList[position].sisasaldo})"
+        btnWallet.text = "${walletList[position].namawallet} (${formatUang(walletList[position].sisasaldo.toDouble())})"
 
         btnWallet.setOnClickListener {
             val action = WalletListFragmentDirections.actionWalletListFragmentToTransactionListFragment(walletList[position].idwallet)

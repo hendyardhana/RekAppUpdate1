@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +20,12 @@ import com.example.rekapp.adapter.TransactionListAdapter
 import com.example.rekapp.model.Transaction
 import com.example.rekapp.viewmodel.TransactionViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.text.NumberFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TransactionListFragment : Fragment() {
 
@@ -46,7 +50,10 @@ class TransactionListFragment : Fragment() {
         }
 
         viewmodel = ViewModelProvider(this).get(TransactionViewModel::class.java)
-        viewmodel.refresh(wallet)
+        val b = LocalDate.now()
+        val bulan = b.toString().split("-")
+        val tahunbulan = "${LocalDate.now().year}-${bulan[1]}-%"
+        viewmodel.refresh(wallet, tahunbulan)
 
         val recViewTransactionList = view.findViewById<RecyclerView>(R.id.recViewTransaction)
         recViewTransactionList.layoutManager = LinearLayoutManager(context)
@@ -78,7 +85,7 @@ class TransactionListFragment : Fragment() {
         for (i in 0 until Global.wallet.size){
             if(Global.wallet[i].idwallet == wallet){
                 txtheader.text = "Transaksi " + Global.wallet[i].namawallet.toUpperCase() + " - " + Global.wallet[i].jeniswallet.toUpperCase()
-                txtsaldos.text = "Rp. ${Global.wallet[i].sisasaldo}"
+                txtsaldos.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Global.wallet[i].sisasaldo.toDouble()).toString()
             }
         }
         observeViewModel(wallet)

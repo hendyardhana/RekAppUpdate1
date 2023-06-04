@@ -2,6 +2,7 @@ package com.example.rekapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.example.rekapp.model.Wallet
 import com.example.rekapp.util.buildDb
 import kotlinx.coroutines.CoroutineScope
@@ -16,10 +17,26 @@ class CreateDetailWalletViewModel(application: Application):AndroidViewModel(app
 
     private val job = Job()
 
+    var listWallet = MutableLiveData<List<Wallet>>()
+
     fun addWallet(wallet: Wallet){
         launch {
             val db = buildDb(getApplication())
             db.RekAppDao().insertWallet(wallet)
+        }
+    }
+
+    fun deleteWallet(wallet: Wallet){
+        launch {
+            val db = buildDb(getApplication())
+            db.RekAppDao().deleteWallet(wallet)
+        }
+    }
+
+    fun getWallet(){
+        launch {
+            val db = buildDb(getApplication())
+            listWallet.value = db.RekAppDao().selectAllOfWallet()
         }
     }
 }

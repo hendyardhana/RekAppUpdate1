@@ -22,8 +22,8 @@ interface RekAppDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTransaction(vararg transaction: Transaction)
 
-    @Query("SELECT * FROM 'transaction' WHERE wallet1= :wallet or wallet2= :wallet")
-    fun selectAllTransaction(wallet:Int): List<Transaction>
+    @Query("SELECT * FROM 'transaction' WHERE tanggaltransaksi like :bulanTransaksi and wallet1= :wallet or wallet2= :wallet")
+    fun selectAllTransaction(wallet:Int, bulanTransaksi:String): List<Transaction>
 
     @Query("DELETE FROM 'transaction' WHERE wallet1= :wallet or wallet2= :wallet")
     fun deleteTransaction(wallet:Int)
