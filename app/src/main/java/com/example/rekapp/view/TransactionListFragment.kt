@@ -18,6 +18,7 @@ import com.example.rekapp.Global
 import com.example.rekapp.R
 import com.example.rekapp.adapter.TransactionListAdapter
 import com.example.rekapp.model.Transaction
+import com.example.rekapp.util.formatUang
 import com.example.rekapp.viewmodel.TransactionViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.NumberFormat
@@ -75,12 +76,12 @@ class TransactionListFragment : Fragment() {
             cardoutcome.visibility = View.GONE
             txtsaldos.visibility = View.GONE
             txtsaldogakanggo.visibility = View.GONE
-            if(wallet == 0){
-                txtheader.text = "PEMASUKAN BULAN INI"
-            }
-            else if(wallet == 1){
-                txtheader.text = "PENGELUARAN BULAN INI"
-            }
+//            if(wallet == 0){
+//                txtheader.text = "PEMASUKAN BULAN INI"
+//            }
+//            else if(wallet == 1){
+//                txtheader.text = "PENGELUARAN BULAN INI"
+//            }
         }
         for (i in 0 until Global.wallet.size){
             if(Global.wallet[i].idwallet == wallet){
@@ -92,6 +93,7 @@ class TransactionListFragment : Fragment() {
     }
 
     private fun observeViewModel(wallet1:Int) {
+        val txtheader = view?.findViewById<TextView>(R.id.txtTransactionHeader)
         viewmodel.transactionLD.observe(viewLifecycleOwner, Observer {
             transactionlistadapter.updateTransactionList(it as ArrayList<Transaction>, wallet1)
             val txtError = view?.findViewById<TextView>(R.id.txtErrorLoadTransaction)
@@ -103,20 +105,41 @@ class TransactionListFragment : Fragment() {
                 txtError?.visibility = View.GONE
             }
 
-            //Log.d("datatransaksi", it.toString())
-            for (i in 0 until it.size){
-                if(it[i].wallet1 == wallet1){
-                    outcome += it[i].nominal
+            if(wallet1 == 0){
+                income = 0
+                for (i in 0 until it.size){
+                    if(it[i].wallet1 == 0){
+                        income += it[i].nominal
+                    }
                 }
-                else if(it[i].wallet2 == wallet1){
-                    income += it[i].nominal
-                }
+                txtheader?.text = "PEMASUKAN BULAN INI = ${formatUang(income.toDouble())}"
             }
+            else if(wallet1 == 1){
+                outcome = 0
+                for (i in 0 until it.size){
+                    if(it[i].wallet1 == 1){
+                        outcome += it[i].nominal
+                    }
+                }
+                txtheader?.text = "PENGELUARAN BULAN INI = ${formatUang(outcome.toDouble())}"
+            }
+            else{
+                income = 0
+                outcome = 0
+                for (i in 0 until it.size){
+                    if(it[i].wallet1 == 0){
+                        income += it[i].nominal
+                    }
+                    else if(it[i].wallet1 == 1){
+                        outcome += it[i].nominal
+                    }
+                }
 
-            val txtincome = view?.findViewById<TextView>(R.id.txtIncome)
-            val txtoutcome = view?.findViewById<TextView>(R.id.txtOutcome)
-            txtincome?.text = income.toString()
-            txtoutcome?.text = outcome.toString()
+                val txtincome = view?.findViewById<TextView>(R.id.txtIncome)
+                val txtoutcome = view?.findViewById<TextView>(R.id.txtOutcome)
+                txtincome?.text = formatUang(income.toDouble())
+                txtoutcome?.text = formatUang(outcome.toDouble())
+            }
         })
     }
 }

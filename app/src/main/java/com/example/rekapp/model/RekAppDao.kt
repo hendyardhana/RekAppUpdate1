@@ -18,6 +18,9 @@ interface RekAppDao {
     @Delete
     fun deleteWallet(wallet:Wallet)
 
+    @Query("UPDATE 'wallet' SET namawallet= :namawallet , sisasaldo= :sisasaldo WHERE idwallet= :idwallet")
+    fun editWallet(namawallet:String, sisasaldo:Int, idwallet:Int)
+
     //Ini untuk Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTransaction(vararg transaction: Transaction)

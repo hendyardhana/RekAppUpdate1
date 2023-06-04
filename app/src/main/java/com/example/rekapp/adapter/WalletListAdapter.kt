@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rekapp.R
@@ -32,6 +33,7 @@ class WalletListAdapter(private val walletList:ArrayList<Wallet>, val adapterOnC
     override fun onBindViewHolder(holder: WalletListViewHolder, position: Int) {
         val btnWallet = holder.view.findViewById<Button>(R.id.btnWalletList)
         val imgDelete = holder.view.findViewById<ImageView>(R.id.imgDeleteWallet)
+        val txtEditWallet = holder.view.findViewById<TextView>(R.id.txtEditWallet)
         btnWallet.text = "${walletList[position].namawallet} (${formatUang(walletList[position].sisasaldo.toDouble())})"
 
         btnWallet.setOnClickListener {
@@ -41,6 +43,11 @@ class WalletListAdapter(private val walletList:ArrayList<Wallet>, val adapterOnC
 
         imgDelete.setOnClickListener {
             adapterOnClick(walletList[position])
+        }
+
+        txtEditWallet.setOnClickListener {
+            val action = WalletListFragmentDirections.actionWalletListFragmentToCreateWalletFragment("${walletList[position].jeniswallet}", "edit", walletList[position].idwallet)
+            Navigation.findNavController(it).navigate(action)
         }
     }
 

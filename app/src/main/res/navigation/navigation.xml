@@ -40,6 +40,12 @@
         <argument
             android:name="jeniswallet"
             app:argType="string" />
+        <argument
+            android:name="createedit"
+            app:argType="string" />
+        <argument
+            android:name="idwalletedit"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/createTransactionFragment"

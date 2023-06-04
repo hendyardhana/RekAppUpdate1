@@ -54,7 +54,7 @@ class WalletListFragment : Fragment() {
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fabAddWallet)
         fab.setOnClickListener {
-            val action = WalletListFragmentDirections.actionWalletListFragmentToCreateWalletFragment(wallet)
+            val action = WalletListFragmentDirections.actionWalletListFragmentToCreateWalletFragment(wallet, "create", 0)
             Navigation.findNavController(it).navigate(action)
         }
 

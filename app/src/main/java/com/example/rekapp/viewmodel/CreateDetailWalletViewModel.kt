@@ -26,17 +26,10 @@ class CreateDetailWalletViewModel(application: Application):AndroidViewModel(app
         }
     }
 
-    fun deleteWallet(wallet: Wallet){
+    fun editWallet(namawallet:String, sisasaldo:Int, idwallet: Int){
         launch {
             val db = buildDb(getApplication())
-            db.RekAppDao().deleteWallet(wallet)
-        }
-    }
-
-    fun getWallet(){
-        launch {
-            val db = buildDb(getApplication())
-            listWallet.value = db.RekAppDao().selectAllOfWallet()
+            db.RekAppDao().editWallet(namawallet, sisasaldo, idwallet)
         }
     }
 }

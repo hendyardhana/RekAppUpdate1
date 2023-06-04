@@ -82,7 +82,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
                 }
 
                 if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
-                    txtDariatauKe.text = "Transaksi Ke " + globalwallet.namawallet + " - " + globalwallet.jeniswallet.toUpperCase()
+                    txtDariatauKe.text = "Transaksi Ke " + globalwallet.namawallet
                     txtNominal.text = "- ${formatUang(transactionList[position].nominal.toDouble())}"
                     txtNominal.setTextColor(Color.RED)
                 }
@@ -98,7 +98,7 @@ class TransactionListAdapter(private val transactionList:ArrayList<Transaction>,
                     }
                 }
                 if(globalwallet.namawallet != "" && globalwallet.jeniswallet != ""){
-                    txtDariatauKe.text = "Transaksi Dari " + globalwallet.namawallet + " - " + globalwallet.jeniswallet.toUpperCase()
+                    txtDariatauKe.text = "Transaksi Dari " + globalwallet.namawallet
                     txtNominal.text = "+ ${formatUang(transactionList[position].nominal.toDouble())}"
                     txtNominal.setTextColor(Color.BLUE)
                 }
