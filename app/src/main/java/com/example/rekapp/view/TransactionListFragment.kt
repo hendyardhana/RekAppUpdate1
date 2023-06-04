@@ -127,11 +127,20 @@ class TransactionListFragment : Fragment() {
                 income = 0
                 outcome = 0
                 for (i in 0 until it.size){
+                    Log.d("datasasa", it[i].toString())
                     if(it[i].wallet1 == 0){
                         income += it[i].nominal
                     }
                     else if(it[i].wallet1 == 1){
                         outcome += it[i].nominal
+                    }
+                    else{
+                        if(it[i].wallet1 == wallet1){
+                            outcome += it[i].nominal
+                        }
+                        else{
+                            income += it[i].nominal
+                        }
                     }
                 }
 
